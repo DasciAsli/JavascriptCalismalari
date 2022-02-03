@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sayac</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <style>
+      .cerceve {
+        position: absolute;
+        top: 10%;
+        left: 30%;
+        width: 500px;
+        height: 500px;
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body class="bg-light">
+    <div class="container cerceve rounded-circle">
+      <div class="text-center mt-5">
+        <div>
+          <h4 class="text-light font-italic">Sayac Uygulaması</h4>
+          <input type="text" class="mt-4 py-2 bg-light rounded" id="Deger" />
+        </div>
+        <div class="btn-group mt-5" role="group" aria-label="Basic example">
+          <button
+            type="button"
+            class="btn btn-light rounded-circle py-4 mr-4"
+            id="Ayarla"
+          >
+            Ayarla
+          </button>
+          <button
+            type="button"
+            class="btn btn-light rounded-circle mr-4"
+            id="Baslat"
+          >
+            Başlat
+          </button>
+          <button
+            type="button"
+            class="btn btn-light rounded-circle mr-4"
+            id="Durdur"
+          >
+            Durdur
+          </button>
+        </div>
+        <div class="mt-4 py-2 bg-info rounded w-25 mx-auto">
+          <h1 id="Sonuc"></h1>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
