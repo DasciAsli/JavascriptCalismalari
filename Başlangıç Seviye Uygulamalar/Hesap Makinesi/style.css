@@ -1,0 +1,31 @@
+.ekran {
+  background-color: black;
+  width: 400px;
+  height: 425px;
+  border-radius: 25px;
+}
+#rakamlar .btnRakam {
+  background-color: #363738;
+  color: wheat;
+  font-size: 35px;
+  border-radius: 25px;
+}
+#operatörler .btnOperator {
+  background-color: #f99003;
+  color: wheat;
+  font-size: 35px;
+  border-radius: 20px;
+}
+#sonuc {
+  width: 100%;
+  height: 80px;
+  background-color: transparent;
+  float: right;
+}
+
+.geri {
+  color: gray;
+}
+.geri > a {
+  cursor: pointer;
+}
