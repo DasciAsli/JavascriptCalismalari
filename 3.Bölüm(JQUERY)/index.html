@@ -17,6 +17,12 @@
       .renk {
         background-color: red;
       }
+      .kutu {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        background-color: black;
+      }
     </style>
   </head>
   <body>
@@ -37,7 +43,7 @@
     <p id="p2">Web Developer Eğitimi</p>
     <p class="paragraf">Web Developer Eğitimi</p>
     <p class="paragraf">Web Developer Eğitimi</p> -->
-
+    <!-- 
     <form action="/action_page.php">
       <p>Adı : <input type="text" class="control" /></p>
       <p>
@@ -48,7 +54,16 @@
           <option value="sinema">Sinema</option>
         </select>
       </p>
-    </form>
+    </form> -->
+    <!-- <p>Sıfırdan Web Developer</p>
+    <button id="show">Show</button>
+    <button id="hide">Hide</button>
+    <button id="toggle">Toggle</button>
+    <button id="slideup">SlideUp</button>
+    <button id="slidedown">SlideDown</button>
+    <button id="slidetoggle">SlideToggle</button>
+    <button id="fadeto">FadeTo</button> -->
+    <div class="kutu"></div>
 
     <script>
       //SELECTORS
@@ -108,6 +123,49 @@
       //     $(".control").change(function () {
       //       console.log($(this).val());
       //     });
+      //   });
+
+      //SHOW-HİDE METHODS
+      //   $(document).ready(function () {
+      //     $("#hide").click(function () {
+      //       $("p").hide();
+      //     });
+      //     $("#show").click(function () {
+      //       $("p").show();
+      //     });
+      //     // $("#toggle").click(function () {
+      //     //   $("p").toggle(); //her bastığında saklıysa gösterir.Açıksa saklar
+      //     // });
+
+      //     //show,hide ve toogle methodlarının hızlı yavaş ya da belirlenen sn içinde işlem yapmasını istiyorsanız
+      //     // $(selector).show(speed,callback);şeklinde kullanılır
+      //     $("#toggle").click(function () {
+      //       $("p").toggle("slow");
+      //     });
+      //     $("#slideup").click(function () {
+      //       $("p").slideUp("slow");
+      //     });
+      //     $("#slidedown").click(function () {
+      //       $("p").slideDown("fast");
+      //     });
+      //     $("#slidetoggle").click(function () {
+      //       $("p").slideToggle(1500);
+      //     });
+      //     $("#fadeto").click(function () {
+      //       $("p").fadeTo("slow", 0.7); //opaklığını değiştirir
+      //     });
+      //   });
+
+      //   //ANİMETE EFFECTS
+      //   //animasyon şeklinde getirir elementi
+      //   $(document).ready(function () {
+      //     $(".kutu").animate(
+      //       {
+      //         width: "400px",
+      //         height: "400px",
+      //       },
+      //       4000
+      //     );
       //   });
     </script>
   </body>
