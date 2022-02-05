@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jquery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <style>
+      .highlight {
+        background-color: gold;
+      }
+      .renk {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <h3 id="header">Jquery Dersleri</h3>
+    <ul id="liste">
+      <li class="item">Jquery Reference</li>
+      <li>Selectors <a href="#">link</a></li>
+      <li class="item">Jquery Plugins</li>
+    </ul>
+    <input
+      type="text"
+      placeholder="FullName"
+      value="Jquery Val Fonksiyonu"
+      class="FullName"
+    />
+    <button id="btnKaydet" onclick="adsoyad();">Kaydet</button> -->
+    <!-- <p id="p1">Renk ekle</p>
+    <p id="p2">Web Developer Eğitimi</p>
+    <p class="paragraf">Web Developer Eğitimi</p>
+    <p class="paragraf">Web Developer Eğitimi</p> -->
+
+    <form action="/action_page.php">
+      <p>Adı : <input type="text" class="control" /></p>
+      <p>
+        Hobiler :
+        <select class="control">
+          <option value="spor" selected>Spor yapmak</option>
+          <option value="kitap">Kitap Okumak</option>
+          <option value="sinema">Sinema</option>
+        </select>
+      </p>
+    </form>
+
+    <script>
+      //SELECTORS
+      //   console.log($("#liste"));
+      //   console.log($("h3"));
+      //   console.log($("ul"));
+      //   console.log($("li"));
+      //   console.log($(".item"));
+      //   console.log($("ul li a")); //ul'nin altındaki li'nin altındaki a
+      //   console.log($("#liste li a")); //id'si liste olan elemanın altındaki li'nin altındaki a
+
+      //STYLİNG CONTENT
+      //   $("#header").css("color", "blue");
+      //   $("a").css("text-decoration", "none");
+      //   //Elemana birden fazla css ekleme
+      //   var styles = {
+      //     color: "yellow",
+      //     fontSize: "20px",
+      //   };
+      //   $("li").css(styles);
+
+      //JQUERY METHODS
+      //   //text()
+      //   console.log($("#header").text()); //idsi header olan elemanın textini konsola yazdır
+      //   console.log($("ul").text());
+      //   //text() methodunun set özelliği
+      //   $("h3").text("Jquery"); //h3 elemanının textine Jquery yazdırdık
+      //   //val()
+      //   console.log($("input").val());
+      //   //val() methodunun set özelliği
+      //   $("input").val("Jquery Val Methodu");
+      //   //onclick kullanımı
+      //   function adsoyad() {
+      //     var adSoyad = $("input").val();
+      //     console.log(`Ad-Soyad : ${adSoyad}`);
+      //     // $(".FullName").addClass("highlight"); //class'ı FullName olan elemana highlight classını da ekledi
+      //     $(".FullName").toggleClass("highlight"); //class'ı FullName olan elemanın classlarında highlight classı varsa çıkarır yoksa ekler ekledi
+      //   }
+
+      //ClİCK EVENT
+      //   $(document).ready(function () {}); //Dökümandaki tüm nesneler yüklenmiş durumda mı?hazır durumdaysa işlem yap demek
+      //   $(function () {}); //Dökümandaki tüm nesneler yüklenmiş durumda mı?hazır durumdaysa işlem yap demek(alternatif kullanım)
+
+      //   $(document).ready(function () {
+      //     $("#p1").click(function () {
+      //       $("#p1").addClass("highlight");
+      //     });
+      //   });
+      //   $(document).ready(function () {
+      //     $(".paragraf").click(function () {
+      //       $(this).addClass("renk"); //2 adet paragraf classına sahip elementimiz var.Biz tıkladığımız element üzerinde işlem yapmak istediğimiz için this anahtar sözcüğünü kullanmalıyız.Aksi takdirde elementlerin 2sinin üzerinde de işlem gerçekleştirmiş oluruz
+      //     });
+      //   });
+
+      //CHANGE EVENT
+      //   $(document).ready(function () {
+      //     $(".control").change(function () {
+      //       console.log($(this).val());
+      //     });
+      //   });
+    </script>
+  </body>
+</html>
