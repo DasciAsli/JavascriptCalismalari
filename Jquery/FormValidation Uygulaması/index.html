@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation Uygulaması</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <style>
+    body {
+      font-size: 180%;
+    }
+    #wrapper {
+      width: 800px;
+      margin: 50px auto;
+    }
+    input {
+      padding: 15px;
+      font-size: 25px;
+      border-radius: 5px;
+      border: 1px solid grey;
+      width: 500px;
+    }
+    label {
+      display: inline-block;
+      width: 250px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    button {
+      background-color: green;
+      color: wheat;
+      padding: 14px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      border: none;
+      margin-top: 20px;
+      width: 100%;
+    }
+    .error {
+      color: red;
+      text-align: left;
+    }
+    p {
+      font-size: 55%;
+      font-weight: bolder;
+      font-style: italic;
+      text-align: center;
+    }
+  </style>
+  <body>
+    <div id="wrapper">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          name="'email"
+          id="email"
+          placeholder="Please enter your email"
+        />
+        <p id="errorMail" class="error"></p>
+      </div>
+      <div class="form-group">
+        <label for="phone">Telefon</label>
+        <input
+          type="text"
+          name="'phone"
+          id="phone"
+          placeholder="Please enter your phone"
+        />
+        <p id="errorPhone" class="error"></p>
+      </div>
+      <div class="form-group">
+        <label for="password">Parola</label>
+        <input
+          type="text"
+          name="'password"
+          id="password"
+          placeholder="Please enter your password"
+        />
+        <p id="errorPassword" class="error"></p>
+      </div>
+      <div class="form-group">
+        <label for="repassword">Parola Tekrar </label>
+        <input
+          type="text"
+          name="repassword"
+          id="repassword"
+          placeholder="Please enter your password again"
+        />
+        <p id="errorRepassword" class="error"></p>
+      </div>
+      <button id="btn">Kaydet</button>
+    </div>
+
+    <script>
+      var errormessage = "";
+
+      function isMail(email) {
+        var pattern =
+          /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/; //regular expression
+        return pattern.test(email);
+      }
+      $(document).ready(function () {
+        $("#btn").click(function () {
+          $(".error").html("");
+          if ($("#email").val() == "") {
+            errormessage = "Mail alanı boş olamaz";
+            $("#errorMail").text(errormessage);
+          } else {
+            if (isMail($("#email").val()) == false) {
+              errormessage = "Email alanı düzgün girilmedi";
+              $("#errorMail").text(errormessage);
+            }
+          }
+          if ($("#phone").val() == "") {
+            errormessage = "Telefon alanı boş olamaz";
+            $("#errorPhone").text(errormessage);
+          } else {
+            if ($.isNumeric($("#phone").val()) == false) {
+              //isNumeric sayısal değer girilip girilmediğini kontrole den bir method
+              errormessage = "Telefon alanı düzgün girilmedi";
+              $("#errorPhone").text(errormessage);
+            }
+          }
+          if ($("#password").val() == "") {
+            errormessage = "Şifre alanı boş olamaz";
+            $("#errorPassword").text(errormessage);
+          }
+          if ($("#repassword").val() == "") {
+            errormessage = "Parola alanı ile eşleşmiyor";
+            $("#errorRepassword").text(errormessage);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
