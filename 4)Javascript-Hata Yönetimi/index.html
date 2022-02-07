@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hata Yakalama</title>
+    <style>
+      body {
+        font-size: 180%;
+      }
+      #wrapper {
+        width: 600px;
+        margin: 50px auto;
+      }
+      input {
+        padding: 15px;
+        font-size: 25px;
+        border-radius: 5px;
+        border: 1px solid grey;
+        width: 500px;
+      }
+      label {
+        display: inline-block;
+        width: 250px;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      button {
+        background-color: black;
+        color: wheat;
+        padding: 14px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        border: none;
+        margin-top: 20px;
+        width: 90%;
+      }
+      .error {
+        color: red;
+        text-align: left;
+      }
+      p {
+        font-size: 55%;
+        font-weight: bolder;
+        font-style: italic;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          name="'email"
+          id="email"
+          placeholder="Please enter your email"
+        />
+        <p id="errorMail" class="error"></p>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Parola</label>
+        <input
+          type="text"
+          name="'password"
+          id="password"
+          placeholder="Please enter your password"
+        />
+        <p id="errorPassword" class="error"></p>
+      </div>
+
+      <button id="btn">Kaydet</button>
+    </div>
+
+    <script>
+      //Reference Error
+      //TypeError
+      //SyntaxError
+      //URIError
+
+      //   try {
+      //     console.log(myfunction());
+      //   } catch (error) {
+      //     console.log(error.message); //hatanın mesajını yazdırmak için
+      //     console.log(error.name); //hatanın türünü yazdırmak için
+      //     console.log(error instanceof ReferenceError); //hatanın tipi ReferenceError mu?True değeri döndürür
+      //   }
+      //   /*************************/
+
+      //   var user = {
+      //     name: "Sadık",
+      //   };
+      //   try {
+      //     if (user.email == null) {
+      //       throw new SyntaxError("User has no email");
+      //     }
+      //     console.log(user.email);
+      //   } catch (error) {
+      //     console.log(error.message); //hatanın mesajını yazdırmak için
+      //     console.log(error.name); //hatanın türünü yazdırmak için
+      //     console.log(error instanceof ReferenceError); //hatanın tipi ReferenceError mu?True değeri döndürür
+      //   } finally {
+      //     console.log("Finally blog");
+      //   } //hata varsa catch çalışır ve finalyy çalışır ama hata yoksa try ve finally çalışır
+
+      //HATA YAKALAMA UYGULAMA
+      var btn = document.getElementById("btn");
+      var emailError = document.querySelector("#errorMail");
+      var passwordError = document.querySelector("#errorPassword");
+
+      btn.addEventListener("click", function (e) {
+        emailError.textContent = " ";
+        passwordError.textContent = " ";
+        var email = document.querySelector("#email");
+        var password = document.querySelector("#password");
+
+        try {
+          if (email.value.length === 0) {
+            throw new Error("Email is required");
+          }
+          if (email.value.length > 20) {
+            throw new Error("Email is too long");
+          }
+        } catch (error) {
+          emailError.textContent = error.message;
+        }
+
+        try {
+          if (password.value.length === 0) {
+            throw new Error("Password is required");
+          }
+          if (password.value.length > 20) {
+            throw new Error("Password is too long");
+          }
+        } catch (error) {
+          passwordError.textContent = error.message;
+        }
+
+        e.preventDefault();
+      });
+    </script>
+  </body>
+</html>
