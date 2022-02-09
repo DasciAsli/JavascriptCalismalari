@@ -1,0 +1,19 @@
+.boxes {
+  width: 250px;
+  height: 250px;
+  display: inline-block;
+  text-align: center;
+}
+div h1 {
+  color: #ffffff;
+  margin-top: 35%;
+}
+#blue {
+  background-color: blue;
+}
+#yellow {
+  background-color: yellow;
+}
+#red {
+  background-color: red;
+}
