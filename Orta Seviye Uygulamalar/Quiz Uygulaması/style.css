@@ -1,13 +1,6 @@
 #cerceve {
   width: 800px;
-  margin-top: 25px;
-}
-#kronometre h1 {
-  font-size: 120px;
-  margin-left: 25px;
-}
-.kontrol {
-  margin-bottom: 5px;
+  margin-top: 75px;
 }
 .kurallar {
   width: 100%;
@@ -19,7 +12,4 @@
 ul li {
   font-size: 15px;
   list-style-type: decimal;
-}
-.yonlendir a {
-  color: #23272b;
 }

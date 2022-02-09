@@ -2,58 +2,52 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quiz Uygulaması</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link
       rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <title>Quiz Uygulaması</title>
   </head>
   <body>
     <div class="container" id="cerceve">
-      <div class="kontrol">
-        <input
-          type="button"
-          id="Baslat"
-          value="Baslat"
-          class="btn btn-dark btn-block mb-4"
-        />
-        <div id="kronometre" class="text-center">
-          <h1 class="d-inline" id="sure">00<h1>
-        </div>
-      </div>
-
-      <div class="card text-center">
-        <div class="card-header text-uppercase font-weight-bold">Genel Kültür Sınavına Hoşgeldiniz</div>
-        <div class="card-body">
-          <h5 class="card-title" id="soruYazdir">Special title treatment</h5>
-        
-          <a href="#" class="btn btn-primary disabled" id="secenek1">Goooooo </a>
-          <a href="#" class="btn btn-primary disabled" id="secenek2">Goooooo </a>
-          <a href="#" class="btn btn-primary disabled" id="secenek3">Gooooo </a>
-          <div class="mt-4 yonlendir">
-              <a href="#" id="Prev" class="d-none" ><i class="fas fa-hand-point-left fa-3x"></i></a>
-              <a href="#" id="Next" class="d-none"><i class="fas fa-hand-point-right fa-3x" ></i></a>
-            
+      <div class="container mt-2">
+        <div class="row">
+          <div class="col-12">
+            <div class="card text-center">
+              <div class="card-header">Genel Kültür Sınavına Hoşgeldiniz</div>
+              <div class="card-body">
+                <h5 id="question" class="card-title">Question Text</h5>
+                <hr />
+                <div id="buttons">
+                  <button id="btn0" class="btn btn-outline-dark">
+                    <span id="choice0"> Secenek 0 </span>
+                  </button>
+                  <button id="btn1" class="btn btn-outline-dark">
+                    <span id="choice1"> Secenek 1 </span>
+                  </button>
+                  <button id="btn2" class="btn btn-outline-dark">
+                    <span id="choice2"> Secenek 2 </span>
+                  </button>
+                </div>
+              </div>
+              <div id="progress" class="card-footer"></div>
+            </div>
+            <div class="kurallar bg-dark">
+              Kurallar
+              <div id="kuralGoster" class="bg-dark">
+                <ul class="bg-white text-dark"></ul>
+              </div>
+            </div>
           </div>
-         
-        </div>
-        <div class="card-footer text-muted" id="soruTakip">1.Soru</div>
-      </div>
-
-      <div class="kurallar bg-primary">Kurallar
-        <div id="kuralGoster" class="bg-primary">
-            <ul class="bg-white text-info" >
-                
-            </ul>
         </div>
       </div>
-      
     </div>
+
     <script src="script.js"></script>
   </body>
 </html>

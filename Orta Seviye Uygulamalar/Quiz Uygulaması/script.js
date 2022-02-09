@@ -1,36 +1,120 @@
-//Elementler tanımlandı
-var soruYazdir = document.querySelector("#soruYazdir");
-var secenek1 = document.querySelector("#secenek1");
-var secenek2 = document.querySelector("#secenek2");
-var secenek3 = document.querySelector("#secenek3");
-var soruTakip = document.querySelector("#soruTakip");
-var Baslat = document.querySelector("#Baslat");
-var sure = document.querySelector("#sure");
-var Next = document.querySelector("#Next");
-var Prev = document.querySelector("#Prev");
-
-//Sorularımın barındılacağı dizi
-var soruDizisi = [];
-var count = 0;
-
-//Question constructor'ı olusturuldu
-var Question = function (question, answer, options) {
-  this.question = question;
+function Question(text, choices, answer) {
+  this.text = text;
+  this.choices = choices;
   this.answer = answer;
-  this.options = options;
+}
+
+// Question prototype
+Question.prototype.checkAnswer = function (answer) {
+  return this.answer === answer;
 };
 
-//Oluşturduğum Question nesnelerini soruDizisine eklemek için oluşturulmuş bir prototype
-Question.prototype.addQuestionArray = function () {
-  soruDizisi.push(this);
+// Quiz Constructor
+function Quiz(questions) {
+  this.questions = questions;
+  this.score = 0;
+  this.questionIndex = 0;
+}
+
+// Quiz Prototype
+Quiz.prototype.getQuestion = function () {
+  return this.questions[this.questionIndex];
 };
 
-//Kurallar constructor'ı oluşturuldu
+// Quiz isFinish
+Quiz.prototype.isFinish = function () {
+  return this.questions.length === this.questionIndex;
+};
+
+// Quiz guess
+Quiz.prototype.guess = function (answer) {
+  var question = this.getQuestion();
+
+  if (question.checkAnswer(answer)) {
+    this.score += 25;
+  }
+  this.questionIndex++;
+};
+
+var q1 = new Question(
+  "'Açlık' kitabının yazarı ünlü romancı kimdir?",
+  ["Jose Saramago", "Gabriel Garcia Marquez", "Knut Hamsun"],
+  "Knut Hamsun"
+);
+var q2 = new Question(
+  "Aspirin ilk kez hangi yılda satışa çıkmıştır?",
+  ["1899", "1937", "1915"],
+  "1899"
+);
+var q3 = new Question(
+  " Dünya'nın 7 Harikası'ndan biri olan 'Halikarnas Mozolesi' nerededir?",
+  ["İtalya", "Türkiye", "Mısır"],
+  "Türkiye"
+);
+var q4 = new Question(
+  "  Fatih Sultan Mehmet’in babası kimdir?",
+  ["I. Mehmet", "II. Murat", "Yıldırım Beyazıt"],
+  "II. Murat"
+);
+
+var questions = [q1, q2, q3, q4];
+
+// Start Quiz
+
+var quiz = new Quiz(questions);
+
+loadQuestion();
+
+function loadQuestion() {
+  if (quiz.isFinish()) {
+    showScore();
+  } else {
+    var question = quiz.getQuestion();
+    var choices = question.choices;
+
+    document.querySelector("#question").textContent = question.text;
+
+    for (var i = 0; i < choices.length; i++) {
+      var element = document.querySelector("#choice" + i);
+      element.innerHTML = choices[i];
+      guess("btn" + i, choices[i]);
+    }
+
+    showProgress();
+  }
+}
+
+function guess(id, guess) {
+  var btn = document.getElementById(id);
+  btn.onclick = function () {
+    quiz.guess(guess);
+    loadQuestion();
+  };
+}
+
+function showScore() {
+  var html = `<h2>Skor</h2><h4>${quiz.score}</h4>`;
+
+  document.querySelector(".card-body").innerHTML = html;
+}
+
+function showProgress() {
+  var totalQuestion = quiz.questions.length;
+  var questionNumber = quiz.questionIndex + 1;
+  var html = questionNumber + ".Soru";
+
+  if (totalQuestion === questionNumber) {
+    document.querySelector("#progress").innerHTML = "Quiz bitti";
+  } else {
+    document.querySelector("#progress").innerHTML = html;
+  }
+}
+
+//Rule constructor
 var Rule = function (rule) {
   this.rule = rule;
 };
 
-//Rule constructor'ının prototype'ına bir fonksiyon eklendi
 Rule.prototype.ruleAdd = function () {
   var ul = document.querySelector("ul");
   var li = document.createElement("li");
@@ -40,102 +124,12 @@ Rule.prototype.ruleAdd = function () {
   ul.appendChild(li);
 };
 
-//Kurallar bölümüne tıklanıldığı zaman kuralların hepsi kullanıcıya gösterilir
 $(document).ready(function () {
   $(".kurallar").click(function () {
     var kuralGoster = $("#kuralGoster");
     kuralGoster.fadeToggle(1000);
   });
 });
-
-//Sayac işlemleri
-var intervalid = null;
-var sayacBaslangic = 0;
-
-function say() {
-  if (sayacBaslangic >= 0) {
-    sure.textContent = String(sayacBaslangic);
-    sayacBaslangic--;
-    if (sayacBaslangic == -1) {
-      Prev.className = "d-none";
-      Next.className = "d-none";
-      secenek1.classList.add("disabled");
-      secenek2.classList.add("disabled");
-      secenek3.classList.add("disabled");
-    }
-  }
-}
-
-//Baslat butonuna tıklanıldıgında olacak olaylar
-Baslat.addEventListener("click", function () {
-  sayacBaslangic = 30;
-  intervalid = setInterval(say, 1000);
-  count = 0;
-  soruGelsin(count);
-  Prev.className = "";
-  Next.className = " ";
-});
-
-//Sayfa ilk açıldığında kuralların gösterilmesin.Kullanıcı tıkladığı anda gösterilsin
-(function NoShowRules() {
-  $("#kuralGoster").hide();
-})();
-
-//Yönlendirme Tuşları ile sorular arasında gezinme işlemi
-Next.addEventListener("click", function () {
-  if (count == soruDizisi.length - 1) {
-    count = -1;
-  }
-  count++;
-  soruGelsin(count);
-  soruTakip.textContent = `${count + 1} . Soru`;
-});
-
-Prev.addEventListener("click", function () {
-  if (count == 0) {
-    count = soruDizisi.length;
-  }
-  count--;
-  soruGelsin(count);
-  soruTakip.textContent = `${count + 1} . Soru`;
-});
-
-//Soruların aktif olması
-function soruGelsin(count) {
-  soruYazdir.textContent = soruDizisi[count].question;
-  secenek1.textContent = soruDizisi[count].options[0];
-  secenek2.textContent = soruDizisi[count].options[1];
-  secenek3.textContent = soruDizisi[count].options[2];
-  secenek1.classList.remove("disabled");
-  secenek2.classList.remove("disabled");
-  secenek3.classList.remove("disabled");
-}
-
-//Question nesneleri üretildi
-var soru1 = new Question(
-  "'Açlık' kitabının yazarı ünlü romancı kimdir?",
-  "Knut Hamsun",
-  ["Jose Saramago", "Gabriel Garcia Marquez", "Knut Hamsun"]
-);
-var soru2 = new Question(
-  "Aspirin ilk kez hangi yılda satışa çıkmıştır?",
-  "1899",
-  ["1899", "1937", "1915"]
-);
-var soru3 = new Question(
-  " Dünya'nın 7 Harikası'ndan biri olan 'Halikarnas Mozolesi' nerededir?",
-  "Türkiye",
-  ["İtalya", "Türkiye", "Mısır"]
-);
-var soru4 = new Question(
-  "  Fatih Sultan Mehmet’in babası kimdir?",
-  "II. Murat",
-  ["I. Mehmet", "II. Murat", "Yıldırım Beyazıt"]
-);
-soru1.addQuestionArray();
-soru2.addQuestionArray();
-soru3.addQuestionArray();
-soru4.addQuestionArray();
 
 //Birkaç kural tanımlandı
 var kural1 = new Rule(
@@ -147,14 +141,10 @@ var kural2 = new Rule(
 var kural3 = new Rule(
   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
 );
-var kural4 = new Rule(
-  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
-);
-var kural5 = new Rule(
-  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
-);
 kural1.ruleAdd();
 kural2.ruleAdd();
 kural3.ruleAdd();
-kural4.ruleAdd();
-kural5.ruleAdd();
+
+(function NoShowRules() {
+  $("#kuralGoster").hide();
+})();
